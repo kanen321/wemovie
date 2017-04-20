@@ -41,7 +41,7 @@ var api = {
 	},
 	mass:{
 		sendall:prefix+'message/mass/sendall?',  //access_token=ACCESS_TOKEN 群发消息
-	}
+	},
 	template:{
 		send:prefix+'message/template/send?',  //access_token=ACCESS_TOKEN 模板消息
 	}
