@@ -42,6 +42,9 @@ var api = {
 	mass:{
 		sendall:prefix+'message/mass/sendall?',  //access_token=ACCESS_TOKEN 群发消息
 	}
+	template:{
+		send:prefix+'message/template/send?',  //access_token=ACCESS_TOKEN 模板消息
+	}
 }
 
 function Wechat(opts){     //构造函数
@@ -537,6 +540,61 @@ Wechat.prototype.massSendMsg = function(type,message,groupid){
 	return new Promise(function(resolve,reject){
 		that.fetchAccessToken().then(function(data){
 			var url = api.mass.sendall + 'access_token=' + data.access_token;
+			request({method:'POST',url:url,body:msg,json:true}).then(function(response){
+				var _data = response.body;
+				if(_data.errcode === 0){
+					resolve(_data);
+				}else{
+					throw new Error('send mass message failed: ' + _data.errmsg);
+				}
+			}).catch(function(err){
+				reject(err);
+			});
+		});
+	});
+}
+
+Wechat.prototype.sendTemplateMsg = function(message){
+	var that = this;
+	var msg = {
+		touser: "oqn53wU6BtjZ8QSA4TrL7WA670X0",
+		template_id: "2nuM2Zun-93JXgbByQWtnC7hpQYryPBLQvv7BqeozmY",
+		url: "http://yunniao.cn",
+		miniprogram: {
+			appid: "",
+			pagepath: ""
+		},
+		data: {
+			first: {
+				value: "订单状态变更",
+				color: "#173177"
+			},
+			keyword1: {
+				value: "配送中",
+				color: "#173177"
+			},
+			keyword2: {
+				value: "12345678",
+				color: "#173177"
+			},
+			keyword3: {
+				value: "2017年4月22日",
+				color: "#173177"
+			},
+			keyword4: {
+				value: "王师傅",
+				color: "#173177"
+			},
+			remark: {
+				value: "本次配送服务由云鸟提供",
+				color: "#173177"
+			}
+		}
+	}
+
+	return new Promise(function(resolve,reject){
+		that.fetchAccessToken().then(function(data){
+			var url = api.template.send + 'access_token=' + data.access_token;
 			request({method:'POST',url:url,body:msg,json:true}).then(function(response){
 				var _data = response.body;
 				if(_data.errcode === 0){

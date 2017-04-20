@@ -85,6 +85,10 @@ exports.reply = function* (next){
 			var data2 = yield wechatApi.getUserOpenIds(message.FromUserName);
 			console.log(JSON.stringify(data2));
 		}
+		else if (content === '10') {
+			var msg = yield wechatApi.sendTemplateMsg();
+			console.log('msg:'+ JSON.stringify(msg));	
+		}
 		else if(content === '17'){
 			var text = {
 	      content:'这是群发消息测试唔~'
