@@ -558,7 +558,7 @@ Wechat.prototype.sendTemplateMsg = function(message){
 	var that = this;
 	var msg = {
 		touser: "oqn53wU6BtjZ8QSA4TrL7WA670X0",
-		template_id: "2nuM2Zun-93JXgbByQWtnC7hpQYryPBLQvv7BqeozmY",
+		template_id: "0TIOY_NwOXWM3ef51aZ4R2wjEc8gZNOwS7QEP9GgXW0",
 		url: "http://yunniao.cn",
 		miniprogram: {
 			appid: "",
