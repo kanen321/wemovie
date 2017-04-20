@@ -13,6 +13,6 @@ app.use(weixin.sendMsg);
 
 app.use(weixin.setMenu)
 
-app.listen(8080);
+app.listen(80);
 
-console.log('Listening 8080...')
+console.log('Listening 80...')
